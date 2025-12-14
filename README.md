@@ -63,15 +63,19 @@ Create a `.env` file:
 cp .env.example .env
 ```
 
-Update the following values if needed:
+Update the following environment variables to match the Docker (Sail) setup:
 
 ```env
 APP_PORT=8080
 PHPMYADMIN_PORT=8081
 
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
 DB_DATABASE=task_management
 DB_USERNAME=sail
 DB_PASSWORD=password
+
 ```
 
 ---
