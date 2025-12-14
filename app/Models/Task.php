@@ -70,15 +70,22 @@ class Task extends Model
         return !$this->dependencies()->where('status', '!=', 'completed')->exists();
     }
 
-    public function changeStatus(TaskStatus $status): void
+   public function changeStatus(TaskStatus $status): void
     {
+        if ($this->status === $status->value) {
+            throw new \DomainException(
+                "Task is already {$status->value}"
+            );
+        }
+
         match ($status) {
             TaskStatus::COMPLETED => $this->complete(),
-            TaskStatus::CANCELED => $this->cancel(),
-            TaskStatus::PENDING => $this->pending(),
+            TaskStatus::CANCELED  => $this->cancel(),
+            TaskStatus::PENDING   => $this->pending(),
             default => throw new \DomainException('Invalid status transition'),
         };
     }
+
     protected function complete(): void
     {
         if (! $this->canBeCompleted()) {
