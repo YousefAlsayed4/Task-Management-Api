@@ -85,6 +85,7 @@ DB_PASSWORD=password
 Run the following command:
 
 ```bash
+composer install
 ./vendor/bin/sail up -d
 ```
 
@@ -99,7 +100,6 @@ This will start:
 ### 5️⃣ Install Dependencies & Setup App
 
 ```bash
-./vendor/bin/sail composer install
 ./vendor/bin/sail artisan key:generate
 ./vendor/bin/sail artisan migrate --seed
 ```
@@ -191,7 +191,7 @@ Task-Management-API.postman_environment.json
 In Postman → Environment Variables:
 
 ```text
-baseUrl = http://localhost:8080/api
+baseURL = http://localhost:8080/api
 ```
 
 > If you change `APP_PORT`, update the base URL accordingly.
